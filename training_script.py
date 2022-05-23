@@ -3,7 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from perceptron_implementation import Perceptron
-def SeperateClasses(df,classA, classB):
+'''
+Removes all classes that aren't `classA` or `classB` and labels `classA` to be 1 and `classB` to be -1 for calculation
+'''
+def SeperateClasses(df,classA, classB): 
     indiceToDelete = []
     row = 0
     for i in df:
@@ -16,6 +19,10 @@ def SeperateClasses(df,classA, classB):
     db = np.where(db == classB, -1 ,db )
     return db
 
+'''
+input: the 2 classes you want
+output: accuracy and list of error count for each training instance
+'''
 def findWhatClassIsIt(classA, classB):
     df = pd.read_csv("train.data")
     df = df.to_numpy()
@@ -34,7 +41,6 @@ def findWhatClassIsIt(classA, classB):
     x_test = df[:,0:4]
     y_test = df[:,4]
 
-    #My Implementation
     pp = Perceptron(30)
     pp.train(x_train, y_train)
     y_predicted = pp.predict(x_test)
@@ -52,7 +58,7 @@ def findWhatClassIsIt(classA, classB):
 
     return accuracy, pp.errors_
 
-
+# initializing an array of 3 for accuracy and error
 accuracy = [None] * 3
 errors = [None] * 3
 
@@ -60,6 +66,7 @@ accuracy[0], errors[0] = findWhatClassIsIt("class-1", "class-2")
 accuracy[1], errors[1] = findWhatClassIsIt("class-2", "class-3")
 accuracy[2], errors[2] = findWhatClassIsIt("class-3", "class-1")
 
+# plotting
 plt.title("Training Epoch-Error Graph")
 plt.xlabel("Epoch")
 plt.ylabel("Errors")
