@@ -9,6 +9,7 @@ The script requires modules to function
 To install them, you need to do the following in commandline:
 
 `python -m pip install pandas`
-`python -m pip install numpy`
-`python -m pip install matplotlib`
 
+`python -m pip install numpy`
+
+`python -m pip install matplotlib`
